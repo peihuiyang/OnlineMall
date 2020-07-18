@@ -1,4 +1,5 @@
-# OnlineMall
+## OnlineMall
+
 在线商城基于.NET Core3.1 + Angular + 微信小程序
 * 此处为管理平台的Angular页面
 * 基于[Antd](https://ng.ant.design/docs/introduce/zh)和[ag-Grid](https://www.ag-grid.com/)框架
