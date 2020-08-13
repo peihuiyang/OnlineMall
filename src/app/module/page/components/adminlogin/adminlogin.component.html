@@ -1,0 +1,30 @@
+<div class="loginbg">
+    <div class="loginform">
+        <div class="form_div">
+            <span class="head_span">管理员登录</span>
+        </div>
+        <div class="form_div">
+            <i nz-icon nzType="user" nzTheme="outline" class="form_i_css"></i>
+            <input class="form_input_css form_input_css1" type="text" [(ngModel)]="user" 
+                placeholder="请输入账号" (blur)="checkUser()"/>
+        </div>
+        <div class="form_div">
+            <i nz-icon nzType="lock" nzTheme="outline" class="form_i_css"></i>
+            <input class="form_input_css form_input_css1" type="password" [(ngModel)]="password"
+            placeholder="请输入密码" (blur)="checkPassword()"/>
+        </div>
+        <div class="form_div">
+            <i nz-icon nzType="safety" nzTheme="outline" class="form_i_css"></i>
+            <input class="form_input_css form_input_css2" id="input_vali" type="text" 
+                [(ngModel)]="verification" placeholder="请输入验证码" (keyup.enter)="adminLogin()"/>
+            <input type="button" id="code_vali" (click)="createCode()" class="form_input_btn" 
+            title='点击更换验证码' [(ngModel)]="checkCode"/> 
+        </div>
+        <div class="form_div">
+            <button nz-button nzType="primary" class="form_btn" [nzLoading]="subLoading" 
+            (click)="adminLogin()">登录</button>
+        </div>
+    </div>
+    <!-- <nz-spin [nzSpinning]="isSpinning" [nzDelay]="500">
+    </nz-spin> -->
+</div>

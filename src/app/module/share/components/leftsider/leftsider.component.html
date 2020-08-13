@@ -1,0 +1,64 @@
+<!-- 左侧管理栏 -->
+<div class="logo"></div>
+<ul nz-menu nzTheme="dark" nzMode="inline">
+    <li nz-menu-item [routerLink]="['/admin/index']" [nzMatchRouter]="true">
+        <i nz-icon nzType="desktop"></i>
+        <span>首页</span>
+    </li>
+    <li nz-submenu nzTitle="商品管理" nzIcon="shop">
+        <ul>
+            <li nz-menu-item [routerLink]="['/goods/list']" [nzMatchRouter]=true>
+                <i nz-icon nzType="table"></i>
+                <span>商品列表</span>
+            </li>
+            <li nz-menu-item [routerLink]="['/goods/classify']" [nzMatchRouter]=true>
+                <i nz-icon nzType="tags"></i>
+                <span>商品分类</span>
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="订单管理" nzIcon="account-book">
+        <ul>
+            <li nz-menu-item>
+                <i nz-icon nzType="shopping-cart"></i>
+                <span>代发货</span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="send"></i>
+                <span>待收货</span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="money-collect"></i>
+                <span>代收款</span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="check"></i>
+                <span>已完成</span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="close"></i>
+                <span>已取消</span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="container"></i>
+                <span>全部订单</span>
+            </li>
+        </ul>
+    </li>
+    <li nz-menu-item [routerLink]="['/admin/user']">
+        <i nz-icon nzType="user"></i>
+        <span>用户管理</span>
+    </li>
+    <li nz-submenu nzTitle="其他模块" nzIcon="home">
+        <ul>
+            <li nz-menu-item *ngIf="jurisdiction=='5'" [routerLink]="['/admin/manage']">
+                <i nz-icon nzType="team"></i>
+                <span>管理员维护</span>
+            </li>
+        </ul>
+    </li>
+</ul>
+<div class="div_collapsed">
+    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'pic-left' : 'pic-right'" (click)="sendCollapsed()"
+        nzTooltipTitle="折叠菜单栏" nzTooltipPlacement="topCenter" nz-tooltip></i>
+</div>

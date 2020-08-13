@@ -1,0 +1,69 @@
+@searchwidth: 280px;
+@searchheight: 38px;
+@fontsize: 12px;
+
+nz-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 4px;
+  }
+  span{
+    font-family: 'hangshu';
+    margin-left: 16px;
+    font-size: @fontsize + 8px;
+  }
+  .heardright{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .head_rightmargin {
+    margin-right: 14px;
+  }
+  .badge{
+    font-size: @fontsize + 12px;
+    margin-right: 30px;
+    margin-top: 5px;
+  }
+
+  // 搜索框样式
+  div.search {padding: 30px 0}
+  .div_form {
+    position: relative;
+    width: @searchwidth;
+    margin: 0 auto;
+  }
+  .search_div:after {content:""; clear:both; display:table}
+  .search_div .div_form {
+    width: auto;
+    float: right;
+    margin-right: 30px;
+  }
+  .search_div input {
+    width: @searchwidth - 80px;
+    height: @searchheight;
+    padding-left: 15px;
+    border-radius: @searchheight;
+    border: 0.5px solid #324b4e;
+    background: #f3f0f0;
+    outline: none;
+    position: relative;
+    transition: .3s linear;
+    font-size: @fontsize;
+  }
+  .search_div input:focus {
+    width: @searchwidth;
+  }
+  .search_div button {
+    width: @searchheight;
+    height: @searchheight;
+    background: none;
+    border: none;
+    position: absolute;
+    top: -2px;
+    right: 0;
+  }
+  

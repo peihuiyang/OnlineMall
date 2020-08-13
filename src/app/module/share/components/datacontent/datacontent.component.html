@@ -1,0 +1,36 @@
+<!-- 展示数据面板 -->
+<nz-page-header class="site-page-header header_css">
+    <nz-page-header-title>{{PageTitle}}</nz-page-header-title>
+    <nz-page-header-extra class="btn_common">
+        <button nz-button nzType="primary" (click)="onCreate()" *ngIf="showButtonNum>=1">
+            <i nz-icon nzType="plus"></i>新增
+        </button>
+        <button class="container_btn" nz-button nzType="link" (click)="onSearch()" *ngIf="showButtonNum>=0">
+            <i nz-icon nzType="search"></i>查询
+        </button>
+        <button class="edit_btn" nz-button nzType="link" (click)="onModify()" *ngIf="showButtonNum>=2">
+            <i nz-icon nzType="edit"></i>修改
+        </button>
+        <button class="lock_btn" nz-button nzType="link" *ngIf="showButtonNum>=3"
+            nz-popconfirm
+            nzPopconfirmTitle="是否确定禁用?"
+            (nzOnConfirm)="onEnable()"
+            nzPopconfirmPlacement="top">
+            <i nz-icon nzType="lock"></i>禁用
+        </button>
+        <button nz-button nzType="link" class="select_btn" *ngIf="showButtonNum>=3"
+            nz-popconfirm
+            nzPopconfirmTitle="是否确定启用?"
+            (nzOnConfirm)="onEnable()"
+            nzPopconfirmPlacement="top">
+            <i nz-icon nzType="select"></i>启用
+        </button>
+        <button nz-button nzType="link" class="delete_btn" *ngIf="showButtonNum>=4"
+            nz-popconfirm
+            nzPopconfirmTitle="是否确定删除?"
+            (nzOnConfirm)="onDelete()"
+            nzPopconfirmPlacement="left">
+            <i nz-icon nzType="delete"></i>删除
+        </button>
+    </nz-page-header-extra>
+</nz-page-header>

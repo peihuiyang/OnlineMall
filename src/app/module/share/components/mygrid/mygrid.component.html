@@ -1,0 +1,23 @@
+<!-- 数据展示grid -->
+<ng-container *ngIf="rowData.length>0; else nullTemplate">
+    <ag-grid-angular class="ag-theme-balham aggrid_css" [rowData]="rowData" [columnDefs]="columnDefs"
+        rowSelection="multiple" 
+        [defaultColDef]="defaultColDef"
+        (rowSelected)="onRowSelected($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        >
+    </ag-grid-angular>
+    <div class="page_div">
+        <nz-pagination class="page_css" [(nzPageIndex)]="currentPage" [nzTotal]="pageTotal" [nzSize]="'small'" 
+            [nzPageSize]="pageSize" nzShowSizeChanger nzShowQuickJumper (nzPageIndexChange)="onPageIndexChange($event)"
+            (nzPageSizeChange)="onPageSizeChange($event)"
+        ></nz-pagination>
+        <span style="margin-left: 10px;">总共{{pageTotal}}条</span>
+    </div>
+</ng-container>
+<ng-template #nullTemplate>
+    <div class="aggrid_css null_temp_css">
+        <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg">
+        </nz-empty>
+    </div>
+</ng-template>

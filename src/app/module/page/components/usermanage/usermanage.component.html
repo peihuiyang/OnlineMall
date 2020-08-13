@@ -1,0 +1,21 @@
+<nz-layout class="layout">
+    <!-- 左侧菜单栏 -->
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <app-leftsider (outer)="runCollapsed($event)"></app-leftsider> 
+    </nz-sider>
+    <!-- 右侧面板 -->
+    <nz-layout class="layout">
+      <!-- 头部导航栏 -->
+      <app-rightheader></app-rightheader>
+      
+      <!-- 内容面板 -->
+      <nz-content>
+        <div class="inner-content">
+          <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"></nz-empty>
+        </div>
+      </nz-content>
+      
+      <!-- 底部 -->
+      <app-footer></app-footer>
+    </nz-layout>
+</nz-layout>

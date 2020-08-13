@@ -1,0 +1,57 @@
+/* 公共样式表，主要是布局 */
+// 设置面板最小高度
+@contentheight: 80vh;
+@headerheight: 10vh;
+// 边框圆角大小‘
+@borderRadius: 20px;
+/* 布局样式 */
+.layout {
+    min-height: 100vh;
+  }
+
+  nz-content {
+    margin: 15px 10px 0;
+    min-height: @contentheight;
+    background: #fff;
+    border-radius: @borderRadius;
+    box-shadow: 0px 5px 10px 0.5px #888888;
+  }
+
+  nz-breadcrumb {
+    margin: 16px 0;
+  }
+
+  .inner-content {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: @contentheight - 20vh;
+  }
+/* 布局样式结束 */
+
+/* 面板样式 */
+.header_css{
+    height: @headerheight;
+    border-radius: @borderRadius;
+}
+.aggrid_css{
+  margin: auto;
+  width: 96%;
+  height: @contentheight - @headerheight;
+}
+.null_temp_css{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page_div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.page_css{
+  margin-left: 2%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,55 @@
+<div>
+    <div nz-row>
+        <div nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label>编码</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="请输入编码" [(ngModel)]="adminCode" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label>名称</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="请输入名称" [(ngModel)]="adminName" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label>密码</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="请输入密码" type="password" [(ngModel)]="adminPwd" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label>部门</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="请输入部门" [(ngModel)]="adminDept" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col nzSpan="24">
+            <nz-form-item>
+                <nz-form-label>职责</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="请输入职责" [(ngModel)]="adminDuty" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row class="btn_create">
+        <button nz-button nzType="primary" (click)="onDateCreate()" [nzLoading]="isCreateLoading">确认</button>
+    </div>
+</div>

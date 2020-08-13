@@ -1,0 +1,62 @@
+<!-- 头部导航栏 -->
+<nz-header>
+    <!-- 左侧内容 -->
+    <div>
+        <span>{{projectName}}</span>
+    </div>
+    <!-- 中间内容 -->
+    <div>
+        <!-- 搜索框 -->
+        <div class="search search_div">
+            <div class="div_form">
+              <input type="text" placeholder="{{inputDefault}}" (keyup.enter)="onSearch()">
+              <button (click)="onSearch()"><i nz-icon nzType="search"></i></button>
+            </div>
+          </div>
+    </div>
+
+    <!-- 右侧内容 -->
+    <div class="heardright">
+        <!-- 通知标识 -->
+        <nz-badge class="badge" [nzCount]="badgeCount"><i nz-icon nzType="notification"></i></nz-badge>
+        <!-- 头像 -->
+        <nz-avatar nzIcon="user" style="background-color:#4de2ec;" class="head_rightmargin"></nz-avatar>
+        <!-- 登录信息 -->
+        <a nz-dropdown [nzDropdownMenu]="menu" class="head_rightmargin">
+            {{userName}}
+            <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+                <li nz-menu-item>个人中心</li>
+                <li nz-menu-item (click)="showPwdModal()">修改密码</li>
+                <li nz-menu-item (click)="loginOut()">登出</li>
+            </ul>
+        </nz-dropdown-menu>
+    </div>
+    <template *ngIf="isPwdVisible">
+        <nz-modal
+        [(nzVisible)]="isPwdVisible"
+        nzTitle="修改密码"
+        (nzOnCancel)="handleCancel()"
+        (nzOnOk)="handleModifyPwd()"
+        [nzOkLoading]="isPwdLoading"
+        >
+        <div class="form_div">
+            <i nz-icon nzType="unlock" nzTheme="outline" class="form_i_css"></i>
+            <input id="checkPwd" class="form_input_css form_input_css1" type="password" [(ngModel)]="oldPassword"
+            placeholder="请输入旧密码" (blur)="checkPassword($event)"/>
+        </div>
+        <div class="form_div">
+            <i nz-icon nzType="lock" nzTheme="outline" class="form_i_css"></i>
+            <input id="checkNewPwd" class="form_input_css form_input_css1" type="password" [(ngModel)]="newPassword"
+            placeholder="请输入新密码" (blur)="checkPassword($event)"/>
+        </div>
+        <div class="form_div">
+            <i nz-icon nzType="check" nzTheme="outline" class="form_i_css"></i>
+            <input id="checkNewPwd1" class="form_input_css form_input_css1" type="password" [(ngModel)]="newPassword1"
+            placeholder="请确认密码" (blur)="checkPassword($event)"/>
+        </div>
+        </nz-modal>
+    </template>
+</nz-header>
