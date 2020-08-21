@@ -1,6 +1,11 @@
 /**
  * 返回数据实体
  */
+export class ResponseAnyResult {
+    data: any;
+    status: number;
+    message: string;
+}
 export class ResponseResult<T> {
     data: T;
     status: number;
@@ -25,6 +30,6 @@ export class TokenAdmin {
     bizId: string;
     code: string;
     name: string;
-    num: string;
+    otherMsg: string;
     token: string;
 }

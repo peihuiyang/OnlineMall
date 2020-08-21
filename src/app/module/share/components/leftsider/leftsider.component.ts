@@ -18,7 +18,7 @@ export class LeftsiderComponent implements OnInit {
   ngOnInit(): void {
     // 获取权限
     this.token = JSON.parse(window.localStorage.getItem(Constants.AdminToken));
-    this.jurisdiction = this.token.num;
+    this.jurisdiction = this.token.otherMsg;
   }
   // 修改isCollapsed事件
   sendCollapsed(): any{

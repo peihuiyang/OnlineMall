@@ -11,12 +11,41 @@
         <!-- 内容面板 -->
         <nz-content>
             <!-- 页头开始 -->
-            <app-datacontent #dataContent [PageTitle]="PageTitle" [CreateDrawer]="CreateDrawer"></app-datacontent>
+            <app-datacontent #dataContent [PageTitle]="PageTitle" [CreateDrawer]="CreateDrawer" [ModifyDrawer]="ModifyDrawer" (searchvisible)="getSearch($event)"
+                (isenable)="getEnable($event)" (finishdelete)="onFinishDelete($event)"
+            ></app-datacontent>
             <!-- 页头结束 -->
-            <app-mygrid [rowData]="rowData" [columnDefs]="columnDefs" [pageTotal]="pageTotal"></app-mygrid>
+            <app-mygrid [rowData]="rowData" [columnDefs]="columnDefs" [pageTotal]="pageTotal" (GridData)="getGridData($event)"></app-mygrid>
         </nz-content>
 
         <!-- 底部 -->
         <app-footer></app-footer>
     </nz-layout>
 </nz-layout>
+<!-- 查询模态框 -->
+<nz-modal [(nzVisible)]="isSearchVisible" nzTitle="查询" (nzOnCancel)="handleCancel()" (nzOnOk)="handleSearch()"
+    [nzOkLoading]="isSearchLoading">
+    <div class="form_div">
+        <span>名称：</span>
+        <input id="name" class="form_input_css form_input_css1" type="text" [(ngModel)]="formName"
+            placeholder="请输入名称" />
+    </div>
+    <div class="form_div">
+        <span>排序：</span>
+        <input id="sort" class="form_input_css form_input_css1" type="number" [(ngModel)]="formSort"
+            placeholder="1-5" />
+    </div>
+    <div class="form_div">
+        <span>启用：</span>
+        <nz-select [(ngModel)]="enableSelect" nzAllowClear nzPlaceHolder="Choose">
+            <nz-option *ngFor="let option of enableList" [nzValue]="option.value" [nzLabel]="option.label">
+            </nz-option>
+        </nz-select>
+        <span style="margin-left: 20px;"></span>
+        <span>根类：</span>
+        <nz-select [(ngModel)]="rootSelect" nzAllowClear nzPlaceHolder="Choose">
+            <nz-option *ngFor="let option of rootList" [nzValue]="option.value" [nzLabel]="option.label">
+            </nz-option>
+        </nz-select>
+    </div>
+</nz-modal>

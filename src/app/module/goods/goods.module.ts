@@ -5,7 +5,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 // ag-Grid模块
 import { AgGridModule } from 'ag-grid-angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ShareModule } from '../share/share.module';
 
@@ -13,9 +13,11 @@ import { GoodsRoutingModule } from './goods-routing.module';
 import { GoodslistComponent } from './components/goodslist/goodslist.component';
 import { GoodclassifyComponent } from './components/goodclassify/goodclassify.component';
 import { CreatedrawerComponent } from './components/goodclassify/createdrawer/createdrawer.component';
+import { ModifydrawerComponent } from './components/goodclassify/modifydrawer/modifydrawer.component';
+import { GoodscreateComponent } from './components/goodscreate/goodscreate.component';
 
 @NgModule({
-  declarations: [ GoodslistComponent, GoodclassifyComponent, CreatedrawerComponent],
+  declarations: [ GoodslistComponent, GoodclassifyComponent, CreatedrawerComponent, ModifydrawerComponent, GoodscreateComponent],
   imports: [
     CommonModule,
     GoodsRoutingModule,
@@ -23,7 +25,8 @@ import { CreatedrawerComponent } from './components/goodclassify/createdrawer/cr
     HttpClientModule,
     NgZorroAntdModule,
     AgGridModule.withComponents([]),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class GoodsModule { }

@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { TokenAdmin } from '../../entity/Common/ResponseResult.entity';
+import { Constants } from '../../entity/Constant/constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpbaseService {
   private http: any;
+  token: TokenAdmin;
   constructor(public Http: HttpClient) {
     this.http = Http;
+    this.token = JSON.parse(window.localStorage.getItem(Constants.AdminToken));
   }
   /**
    * Get方法
@@ -18,7 +22,11 @@ export class HttpbaseService {
    * @param params 参数
    */
   // get方法
-  public get(url: string, options?: object, params?: object): Observable<{}> {
+  public get(url: string, params?: object): Observable<{}> {
+    const getheader = new HttpHeaders({
+      'Content-Type': 'text/plain',
+      'Authorization': this.token.token
+    });
     let httpParams = new HttpParams();
     if (params) {
       for (const key in params) {
@@ -27,21 +35,39 @@ export class HttpbaseService {
         }
       }
     }
-    return this.http.get(url, { headers: options, params: httpParams }).pipe(
+    return this.http.get(url, { headers: getheader, params: httpParams }).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
   }
   /**
-   * POST请求处理（一般用于保存数据）
-   * @param url 后台接口api
-   * @param data 参数
+   * Post请求
+   * @param url 请求路径
+   * @param data 数据
    */
-  public post(url: string, data = {}, token: string): Observable<any> {
+  public post(url: string, data = {}): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': token
+        'Authorization': this.token.token
+      })
+    };
+    return this.http.post(url, data, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+  /**
+   * Post请求拓展
+   * @param url 路径
+   * @param contenttype 参数格式
+   * @param data 参数值
+   */
+  public spost(url: string, data = {}, contenttype = 'text/plain'): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': contenttype,
+        'Authorization': this.token.token
       })
     };
     return this.http.post(url, data, httpOptions).pipe(

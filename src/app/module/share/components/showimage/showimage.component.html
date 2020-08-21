@@ -1,0 +1,37 @@
+<!-- 图片展示 -->
+<div class="ImageShow">
+    <ng-template *ngIf="fileList.length > 0">
+        <!-- 有图片则展示图片 -->
+        <div *ngFor="let item of fileList" class="ImageBox" (mouseenter)="HoverImage(item.objectid)"
+            (mouseleave)="LeaveHover(item.objectid)">
+            <div class="BtnBox" *ngIf="hoverState">
+                <i nz-icon nzType="eye" nzTheme="outline" class="btn_icon" (click)="ShowImage(item.base64String)"></i>
+                <i nz-icon nzType="delete" nzTheme="outline" class="btn_icon" (click)="DeleteImage(item.objectid)"></i>
+            </div>
+            <img [src]="item.base64String" class="image_css" />
+        </div>
+    </ng-template>
+
+    <!-- 展示上传主键 -->
+    <div *ngIf="fileList.length < 8">
+        <!-- 无图片则展示上传空间 -->
+        <nz-upload class="avatar-uploader" nzAction="/api/basics/v1/upload/uploadcache" nzName="file"
+            nzListType="picture-card" [nzHeaders]="headers" [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload"
+            (nzChange)="handleChange($event)">
+            <div>
+                <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+                <div class="ant-upload-text">上传</div>
+            </div>
+        </nz-upload>
+    </div>
+
+</div>
+
+<!-- 图片放大显示 -->
+<div *ngIf="enlargeState" (click)="ShowCancel()">
+    <!-- 蒙层 -->
+    <div class="big_mask"></div>
+    <div class="big_show">
+        <img [src]="showUrl1" class="big_image" />
+    </div>
+</div>

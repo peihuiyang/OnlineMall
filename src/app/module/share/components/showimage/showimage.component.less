@@ -1,0 +1,71 @@
+.avatar {
+    width: 128px;
+    height: 128px;
+  }
+  .upload-icon {
+    font-size: 32px;
+    color: #999;
+  }
+  .ant-upload-text {
+    margin-top: 8px;
+    color: #666;
+  }
+    /* 图片显示样式 */
+    .ImageShow{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .ImageBox{
+      display: flex;
+      flex-direction: column;
+    }
+    .image_css{
+      width: 400px;
+      height: 260px;
+      border-radius: 20px;
+      box-shadow: 0px 12px 12px 1px #888888;
+    }
+    .BtnBox{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    .btn_icon{
+      margin-right: 20px;
+      font-size: 20px;
+    }
+    /* 放大的图片显示 */
+    .big_mask{
+      position: absolute;
+      height: 100vh;
+      width: 100%;
+      top:0;
+      left: 0;
+      z-index: 95;
+      opacity: 0.5;
+      background-color: gray;
+    }
+    .big_show{
+      position: absolute;
+      top:0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+    }
+    .big_image{
+      opacity:1;
+      height: 500px;
+      width: 900px;
+      border-radius: 30px;
+      box-shadow: 0px 12px 12px 1px #888888;
+    }

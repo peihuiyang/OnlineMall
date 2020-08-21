@@ -2,16 +2,6 @@
     <div nz-row>
         <div nz-col nzSpan="24">
             <nz-form-item>
-                <nz-form-label>编码</nz-form-label>
-                <nz-form-control>
-                    <input nz-input placeholder="请输入编码" [(ngModel)]="goodscCode" />
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-    </div>
-    <div nz-row>
-        <div nz-col nzSpan="24">
-            <nz-form-item>
                 <nz-form-label>名称</nz-form-label>
                 <nz-form-control>
                     <input nz-input placeholder="请输入名称" [(ngModel)]="goodscName" />
@@ -58,6 +48,6 @@
         </div>
     </div>
     <div nz-row class="btn_create">
-        <button nz-button nzType="primary" (click)="onDateCreate()" [nzLoading]="isCreateLoading">确认</button>
+        <button nz-button nzType="primary" (click)="onModify()" [nzLoading]="isModifyLoading">确认</button>
     </div>
 </div>

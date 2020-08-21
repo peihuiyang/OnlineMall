@@ -1,0 +1,86 @@
+<nz-layout class="layout">
+    <!-- 左侧菜单栏 -->
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <app-leftsider (outer)="runCollapsed($event)"></app-leftsider>
+    </nz-sider>
+    <!-- 右侧面板 -->
+    <nz-layout class="layout">
+        <!-- 头部导航栏 -->
+        <app-rightheader></app-rightheader>
+
+        <!-- 内容面板 -->
+        <nz-content>
+            <div class="site-page-header-ghost-wrapper">
+                <!-- 页头 -->
+                <nz-page-header nzBackIcon [nzGhost]="false">
+                    <nz-page-header-title>新增</nz-page-header-title>
+                    <nz-page-header-subtitle>新增商品</nz-page-header-subtitle>
+                    <nz-page-header-extra>
+                        <button nz-button nzType="primary">保存</button>
+                    </nz-page-header-extra>
+                </nz-page-header>
+                <!-- 步骤条 -->
+                <nz-steps nzType="navigation" [nzCurrent]="current">
+                    <nz-step nzTitle="基本信息" nzStatus="process"></nz-step>
+                    <nz-step nzTitle="添加图片" nzStatus="wait"></nz-step>
+                    <nz-step nzTitle="商品详情" nzStatus="wait"></nz-step>
+                    <nz-step nzTitle="其他" nzStatus="wait"></nz-step>
+                </nz-steps>
+                <!-- 内容面板开始 -->
+                <div class="steps-content">
+                    <div *ngIf="current===0">
+                        <form nz-form [formGroup]="form1">
+                            <nz-form-item class="form_item">
+                                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="formName">商品名称</nz-form-label>
+                                <nz-form-control nzErrorTip="商品名称不能为空!">
+                                  <input class="form_input_css form_input_css1" nz-input formControlName="formName" id="goodsName" />
+                                </nz-form-control>
+                              </nz-form-item>
+                              <nz-form-item class="form_item">
+                                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="formClassify">商品分类</nz-form-label>
+                                <nz-form-control nzErrorTip="请选择商品分类!">
+                                  <input class="form_input_css form_input_css1" nz-input formControlName="formClassify" id="goodsClassify" />
+                                </nz-form-control>
+                              </nz-form-item>
+                              <nz-form-item class="form_item">
+                                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="formStock">库存计算方式</nz-form-label>
+                                <nz-form-control nzErrorTip="请选择库存计算方式!">
+                                    <nz-radio-group [(ngModel)]="formStock" nzName="radiogroup" formControlName="formStock">
+                                        <label nz-radio nzValue="A">下单减库存</label>
+                                        <label nz-radio nzValue="B">付款减库存</label>
+                                    </nz-radio-group>
+                                </nz-form-control>
+                              </nz-form-item>
+                        </form>
+
+                    </div>
+                    <div *ngIf="current===1">
+                        <app-upload></app-upload>
+                    </div>
+                    <div *ngIf="current===2">
+                        <p>{{current}}</p>
+                    </div>
+                    <div *ngIf="current===3">
+                        <p>{{current}}</p>
+                    </div>
+                </div>
+                <!-- 内容面板结束 -->
+                <!-- 按钮 -->
+                <div class="steps-action">
+                    <button nz-button nzType="primary" (click)="pre()" *ngIf="current > 0">
+                        <span>上一步</span>
+                    </button>
+                    <button nz-button nzType="primary" (click)="next()" *ngIf="current < 3">
+                        <span>下一步</span>
+                    </button>
+                    <button class="edit_btn" nz-button nzType="link" (click)="done()" *ngIf="current === 3">
+                        <span>提交</span>
+                    </button>
+                </div>
+            </div>
+        </nz-content>
+
+        <!-- 底部 -->
+        <app-footer></app-footer>
+    </nz-layout>
+</nz-layout>

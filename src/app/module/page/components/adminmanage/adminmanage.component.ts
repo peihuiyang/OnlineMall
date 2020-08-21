@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { TitleConstant } from '../../../../entity/Constant/titleConstant';
 import { AdminCreateInput, AdminDto, AdminModifyInput, AdminEnableInput, AdminDeleteInput } from '../../../../entity/Entity/AdminExtend.entity';
 import { ApiUrl, Constants } from '../../../../entity/Constant/constant';
-import { ResponseResult, ResponseResults, TokenAdmin } from '../../../../entity/Common/ResponseResult.entity';
+import { ResponseResult, ResponseResults } from '../../../../entity/Common/ResponseResult.entity';
 import { SearchInput, FilterEntity } from '../../../../entity/Common/Query.entity';
 // 引入服务
 import { HttpbaseService } from '../../../../service/http/httpbase.service';
@@ -18,7 +18,6 @@ import { RowNode } from 'ag-grid-community';
 export class AdminmanageComponent implements OnInit {
   // 侧边栏折叠标识
   isCollapsed = false;
-  public token: TokenAdmin;
   // 新增
   createVisible = false;
   isCreateLoading = false;
@@ -76,7 +75,6 @@ export class AdminmanageComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle(TitleConstant.AdminmanageTitle);
-    this.token = JSON.parse(window.localStorage.getItem(Constants.AdminToken));
   }
   runCollapsed(msg: boolean): void {
     this.isCollapsed = msg;
@@ -93,7 +91,6 @@ export class AdminmanageComponent implements OnInit {
    */
   onCreate(): void {
     this.isCreateLoading = true;
-    const token = this.token.token;
     // 获取新增实体
     this.adminCreateInput.code = this.adminCode;
     this.adminCreateInput.name = this.adminName;
@@ -102,7 +99,7 @@ export class AdminmanageComponent implements OnInit {
     this.adminCreateInput.duty = this.adminDuty;
     this.adminCreateInput.jurisdiction = this.adminJurisd;
     this.adminCreateInput.isEnable = this.switchEnable;
-    this.http.post(ApiUrl.AdminCreate, this.adminCreateInput, token).subscribe((res: ResponseResult<AdminDto>) => {
+    this.http.post(ApiUrl.AdminCreate, this.adminCreateInput).subscribe((res: ResponseResult<AdminDto>) => {
       this.isCreateLoading = false;
       this.message.Success(res.message);
       this.createVisible = false;
@@ -150,7 +147,7 @@ export class AdminmanageComponent implements OnInit {
       filter.fieldValue = this.formJurisdiction;
       searchInput.queryFilter.push(filter);
     }
-    this.http.post(ApiUrl.AdminSearch, searchInput, this.token.token)
+    this.http.post(ApiUrl.AdminSearch, searchInput)
     .subscribe((res: ResponseResults<AdminDto>) => {
       // 赋值
       this.pageTotal = res.data.totalCount;
@@ -194,7 +191,7 @@ export class AdminmanageComponent implements OnInit {
     this.adminModifyInput.duty = this.adminDuty;
     this.adminModifyInput.jurisdiction = this.adminJurisd;
     this.adminModifyInput.isEnable = this.switchEnable;
-    this.http.post(ApiUrl.AdminModify, this.adminModifyInput, this.token.token).subscribe((res: ResponseResult<AdminDto>) => {
+    this.http.post(ApiUrl.AdminModify, this.adminModifyInput).subscribe((res: ResponseResult<AdminDto>) => {
       this.isModifyLoading = false;
       this.message.Success(res.message);
       this.modifyVisible = false;
@@ -222,7 +219,7 @@ export class AdminmanageComponent implements OnInit {
         enableInput.isEnable = false;
         this.adminEnableInputs.push(enableInput);
       });
-      this.http.post(ApiUrl.AdminEnable, this.adminEnableInputs, this.token.token).subscribe((res: ResponseResult<AdminDto>) => {
+      this.http.post(ApiUrl.AdminEnable, this.adminEnableInputs).subscribe((res: ResponseResult<AdminDto>) => {
         this.message.Success(res.message);
         this.handleSearch();
       },
@@ -243,7 +240,7 @@ export class AdminmanageComponent implements OnInit {
         enableInput.isEnable = true;
         this.adminEnableInputs.push(enableInput);
       });
-      this.http.post(ApiUrl.AdminEnable, this.adminEnableInputs, this.token.token).subscribe((res: ResponseResult<AdminDto>) => {
+      this.http.post(ApiUrl.AdminEnable, this.adminEnableInputs).subscribe((res: ResponseResult<AdminDto>) => {
         this.message.Success(res.message);
         this.handleSearch();
       },
@@ -266,7 +263,7 @@ export class AdminmanageComponent implements OnInit {
         deleteInput.bizId = element.bizId;
         this.adminDeleteInputs.push(deleteInput);
       });
-      this.http.post(ApiUrl.AdminDelete, this.adminDeleteInputs, this.token.token).subscribe((res: ResponseResult<AdminDto>) => {
+      this.http.post(ApiUrl.AdminDelete, this.adminDeleteInputs).subscribe((res: ResponseResult<AdminDto>) => {
         this.message.Success(res.message);
         this.handleSearch();
       },

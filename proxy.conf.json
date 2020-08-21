@@ -1,6 +1,11 @@
 {
-    "/api":{
+    "/api/eshop":{
         "target":"http://localhost:54748",
+        "logLevel": "debug",
+        "changeOrigin": true 
+    },
+    "/api/basics":{
+        "target":"http://localhost:51810",
         "logLevel": "debug",
         "changeOrigin": true 
     }

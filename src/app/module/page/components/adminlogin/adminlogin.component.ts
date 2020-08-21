@@ -126,11 +126,6 @@ export class AdminloginComponent implements OnInit {
         this.message.success(respon.message);
         // 将登录信息存在缓存里
         window.localStorage.setItem(Constants.AdminToken, JSON.stringify(respon.data));
-        // window.localStorage.setItem('bizId', respon.data.bizId);
-        // window.localStorage.setItem('code', respon.data.code);
-        // window.localStorage.setItem('name', respon.data.name);
-        // window.localStorage.setItem('num', respon.data.num.toString());
-        // window.localStorage.setItem('token', respon.data.token);
         // 跳转
         this.router.navigate(['/admin/index']);
     }, error => {

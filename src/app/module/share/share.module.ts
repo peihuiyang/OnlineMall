@@ -14,10 +14,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RightheaderComponent } from './components/rightheader/rightheader.component';
 import { DatacontentComponent } from './components/datacontent/datacontent.component';
 import { MygridComponent } from './components/mygrid/mygrid.component';
+import { PageheaderComponent } from './components/pageheader/pageheader.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { ShowimageComponent } from './components/showimage/showimage.component';
 
 
 @NgModule({
-  declarations: [LeftsiderComponent, FooterComponent, RightheaderComponent, DatacontentComponent, MygridComponent],
+  declarations: [LeftsiderComponent, FooterComponent, RightheaderComponent, DatacontentComponent, MygridComponent,
+    PageheaderComponent, UploadComponent, ShowimageComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -26,7 +30,8 @@ import { MygridComponent } from './components/mygrid/mygrid.component';
     FormsModule,
     AgGridModule.withComponents([])
   ],
-  exports: [LeftsiderComponent, FooterComponent, RightheaderComponent, DatacontentComponent, MygridComponent],
+  exports: [LeftsiderComponent, FooterComponent, RightheaderComponent, DatacontentComponent, MygridComponent,
+    PageheaderComponent, UploadComponent],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }
   ]
